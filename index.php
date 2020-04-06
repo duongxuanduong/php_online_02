@@ -214,7 +214,7 @@
 				<div class="row"> 
 					<div class="col-md-12">
 						<div class="section-title">
-							<h2>Up load 6 bài đâu</h2>
+							<h2>Up load 6 bài đầu</h2>
 						</div>
 					</div>
 
