@@ -1,3 +1,17 @@
+<?php
+	//Load bài viết theo danh mục
+	require_once('connection.php');
+	$id = $_GET['id'];
+	$query_recent_category=  "SELECT p.*, c.tible as t, c.descripition as des from posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE p.categories_id = ".$id." ORDER BY created_at DESC LIMIT 3";
+
+    $result_recent_category = $conn->query($query_recent_category);
+
+    $categorise_cate = array();
+
+    while($row = $result_recent_category->fetch_assoc()){
+        $categorise_cate[] = $row;
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -28,125 +42,38 @@
 		<![endif]-->
 
     </head>
-	<body>
-		
-		<!-- Header -->
-		<header id="header">
-			<!-- Nav -->
-			<div id="nav">
-				<!-- Main Nav -->
-				<div id="nav-fixed">
-					<div class="container">
-						<!-- logo -->
-						<div class="nav-logo">
-							<a href="index.html" class="logo"><img src="./img/logo.png" alt=""></a>
-						</div>
-						<!-- /logo -->
-
-						<!-- nav -->
-						<ul class="nav-menu nav navbar-nav">
-							<li><a href="category.html">News</a></li>
-							<li><a href="category.html">Popular</a></li>
-							<li class="cat-1"><a href="category.html">Web Design</a></li>
-							<li class="cat-2"><a href="category.html">JavaScript</a></li>
-							<li class="cat-3"><a href="category.html">Css</a></li>
-							<li class="cat-4"><a href="category.html">Jquery</a></li>
-						</ul>
-						<!-- /nav -->
-
-						<!-- search & aside toggle -->
-						<div class="nav-btns">
-							<button class="aside-btn"><i class="fa fa-bars"></i></button>
-							<button class="search-btn"><i class="fa fa-search"></i></button>
-							<div class="search-form">
-								<input class="search-input" type="text" name="search" placeholder="Enter Your Search ...">
-								<button class="search-close"><i class="fa fa-times"></i></button>
-							</div>
-						</div>
-						<!-- /search & aside toggle -->
-					</div>
-				</div>
-				<!-- /Main Nav -->
-
-				<!-- Aside Nav -->
-				<div id="nav-aside">
-					<!-- nav -->
-					<div class="section-row">
-						<ul class="nav-aside-menu">
-							<li><a href="index.html">Home</a></li>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="#">Join Us</a></li>
-							<li><a href="#">Advertisement</a></li>
-							<li><a href="contact.html">Contacts</a></li>
-						</ul>
-					</div>
-					<!-- /nav -->
-
-					<!-- widget posts -->
-					<div class="section-row">
-						<h3>Recent Posts</h3>
-						<div class="post post-widget">
-							<a class="post-img" href="blog-post.html"><img src="./img/widget-2.jpg" alt=""></a>
-							<div class="post-body">
-								<h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
-							</div>
-						</div>
-
-						<div class="post post-widget">
-							<a class="post-img" href="blog-post.html"><img src="./img/widget-3.jpg" alt=""></a>
-							<div class="post-body">
-								<h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-							</div>
-						</div>
-
-						<div class="post post-widget">
-							<a class="post-img" href="blog-post.html"><img src="./img/widget-4.jpg" alt=""></a>
-							<div class="post-body">
-								<h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-							</div>
-						</div>
-					</div>
-					<!-- /widget posts -->
-
-					<!-- social links -->
-					<div class="section-row">
-						<h3>Follow us</h3>
-						<ul class="nav-aside-social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-						</ul>
-					</div>
-					<!-- /social links -->
-
-					<!-- aside nav close -->
-					<button class="nav-aside-close"><i class="fa fa-times"></i></button>
-					<!-- /aside nav close -->
-				</div>
-				<!-- Aside Nav -->
-			</div>
-			<!-- /Nav -->
-			
-			<!-- Page Header -->
-			<div class="page-header">
+	<body>	
+		<?php require_once('MainNav.php')?>
+		<!-- section -->
+		<div class="page-header">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-10">
 							<ul class="page-header-breadcrumb">
-								<li><a href="index.html">Home</a></li>
-								<li>JavaScript</li>
+								<li><a href="index.php">Home</a></li>
+								<li><?php
+									if($id == 1)
+										echo 'Nóng trong ngày';
+									if($id == 2)
+										echo 'ShowBiz';
+									if($id == 3)
+										echo 'Người Nổi Tiếng';
+								?></li>
 							</ul>
-							<h1>JavaScript</h1>
+							<h1>
+								<?php
+									if($id == 1)
+										echo 'Nóng trong ngày';
+									if($id == 2)
+										echo 'ShowBiz';
+									if($id == 3)
+										echo 'Người Nổi Tiếng';
+								?>
+							</h1>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /Page Header -->
-		</header>
-		<!-- /Header -->
-		
-		<!-- section -->
 		<div class="section">
 			<!-- container -->
 			<div class="container">
@@ -157,47 +84,52 @@
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-thumb">
-									<a class="post-img" href="blog-post.html"><img src="./img/post-1.jpg" alt=""></a>
+									<a class="post-img" href="blog-post.html"><img src="<?php echo  $categorise_cate["0"]["thumbnail"] ;?>" alt="" height="380px"></a>
 									<div class="post-body">
 										<div class="post-meta">
-											<a class="post-category cat-2" href="#">JavaScript</a>
-											<span class="post-date">March 27, 2018</span>
-										</div>
-										<h3 class="post-title"><a href="blog-post.html">Javascript : Prototype vs Class</a></h3>
+										<?php 
+											$kt = NULL;
+											if(strcasecmp($categorise_cate['0']['des'], "NTN") == 0)
+												$kt = "post-category cat-1";
+											if(strcasecmp( $categorise_cate['0']['des'], "SB") == 0)
+												$kt = "post-category cat-2";
+											if(strcasecmp( $categorise_cate['0']['des'], "NNT") == 0)
+												$kt = "post-category cat-3";
+										?>
+											<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $categorise_cate['0']['t'] ;?></a>
+											<span class="post-date"><?php echo $categorise_cate['0']['created_at'] ;?></span>
+											</div>
+											<h3 class="post-title"><a href="blog-post.html"><?php echo $categorise_cate['0']['title'] ;?></a></h3>
 									</div>
 								</div>
 							</div>
 							<!-- /post -->
 										
 							<!-- post -->
+							<?php for ($i=1; $i < 3; $i++)  { ?>
 							<div class="col-md-6">
 								<div class="post">
-									<a class="post-img" href="blog-post.html"><img src="./img/post-4.jpg" alt=""></a>
+									<a class="post-img" href="blog-post.html"><img src="<?php echo  $categorise_cate[$i]["thumbnail"] ;?>" alt="" height="243px"></a>
 									<div class="post-body">
 										<div class="post-meta">
-											<a class="post-category cat-2" href="#">JavaScript</a>
-											<span class="post-date">March 27, 2018</span>
-										</div>
-										<h3 class="post-title"><a href="blog-post.html">Chrome Extension Protects Against JavaScript-Based CPU Side-Channel Attacks</a></h3>
+										<?php 
+											$kt = NULL;
+											if(strcasecmp($categorise_cate[$i]['des'], "NTN") == 0)
+												$kt = "post-category cat-1";
+											if(strcasecmp( $categorise_cate[$i]['des'], "SB") == 0)
+												$kt = "post-category cat-2";
+											if(strcasecmp( $categorise_cate[$i]['des'], "NNT") == 0)
+												$kt = "post-category cat-3";
+										?>
+											<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $categorise_cate[$i]['t'] ;?></a>
+											<span class="post-date"><?php echo $categorise_cate[$i]['created_at'] ;?></span>
+											</div>
+											<h3 class="post-title"><a href="blog-post.html"><?php echo $categorise_cate[$i]['title'] ;?></a></h3>
 									</div>
 								</div>
 							</div>
-							<!-- /post -->
-
-							<!-- post -->
-							<div class="col-md-6">
-								<div class="post">
-									<a class="post-img" href="blog-post.html"><img src="./img/post-6.jpg" alt=""></a>
-									<div class="post-body">
-										<div class="post-meta">
-											<a class="post-category cat-2" href="#">JavaScript</a>
-											<span class="post-date">March 27, 2018</span>
-										</div>
-										<h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-									</div>
-								</div>
-							</div>
-							<!-- /post -->
+							<?php } ?>
+							<!--  /post -->
 							
 							<div class="clearfix visible-md visible-lg"></div>
 							
@@ -423,10 +355,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="footer-widget">
 									<h3 class="footer-title">Catagories</h3>
 									<ul class="footer-links">
-										<li><a href="category.html">Web Design</a></li>
-										<li><a href="category.html">JavaScript</a></li>
-										<li><a href="category.html">Css</a></li>
-										<li><a href="category.html">Jquery</a></li>
+										<li><a href="category.php">Web Design</a></li>
+										<li><a href="category.php">JavaScript</a></li>
+										<li><a href="category.php">Css</a></li>
+										<li><a href="category.php">Jquery</a></li>
 									</ul>
 								</div>
 							</div>
