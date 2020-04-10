@@ -1,13 +1,23 @@
 <?php
 	require_once('connection.php');
+	//lấy id của bài viết
 	$idblog = $_GET['id'];
-
+	//Select bài viết từ cơ sở dữ liệu
 	$query_post_title=  "SELECT p.*, c.id as idcate, c.tible as t  , c.descripition as des, a.name as n FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id LEFT JOIN authors AS a  ON p.author_id = a.id WHERE p.status= 1 AND p.id = ".$idblog;
-
+	
 	$result_post = $conn->query($query_post_title);
 
-
 	$post_title = $result_post->fetch_assoc();
+
+	//Select các bài viết liên quan
+	$query_post_MostR=  "SELECT p.*, c.id as idcate, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id  WHERE p.status= 1 AND c.id = ".$post_title['idcate']." ORDER BY created_at DESC LIMIT 4 ";
+	
+	$result_post_MostR = $conn->query($query_post_MostR);
+
+	$post_MostR = array();
+	while($row = $result_post_MostR->fetch_assoc()){
+        $post_MostR[]= $row;
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -230,35 +240,14 @@
 							<div class="section-title">
 								<h2>Most Read</h2>
 							</div>
-
+						<?php foreach ($post_MostR as $most)  {?>
 							<div class="post post-widget">
-								<a class="post-img" href="blog-post.html"><img src="./img/widget-1.jpg" alt=""></a>
+								<a class="post-img" href="blog-post.php?id=<?=$most['id']?>"><img src=<?php echo $most['thumbnail'] ;?> alt="" width="90px" height="90px"></a>
 								<div class="post-body">
-									<h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
+									<h3 class="post-title"><a href="blog-post.php?id=<?=$most['id']?>"><?php echo $most['title']?></a></h3>
 								</div>
 							</div>
-
-							<div class="post post-widget">
-								<a class="post-img" href="blog-post.html"><img src="./img/widget-2.jpg" alt=""></a>
-								<div class="post-body">
-									<h3 class="post-title"><a href="blog-post.html">Pagedraw UI Builder Turns Your Website Design Mockup Into Code Automatically</a></h3>
-								</div>
-							</div>
-
-							<div class="post post-widget">
-								<a class="post-img" href="blog-post.html"><img src="./img/widget-3.jpg" alt=""></a>
-								<div class="post-body">
-									<h3 class="post-title"><a href="blog-post.html">Why Node.js Is The Coolest Kid On The Backend Development Block!</a></h3>
-								</div>
-							</div>
-
-							<div class="post post-widget">
-								<a class="post-img" href="blog-post.html"><img src="./img/widget-4.jpg" alt=""></a>
-								<div class="post-body">
-									<h3 class="post-title"><a href="blog-post.html">Tell-A-Tool: Guide To Web Design And Development Tools</a></h3>
-								</div>
-							</div>
-						</div>
+						<?php }?>
 						<!-- /post widget -->
 
 						<!-- post widget -->

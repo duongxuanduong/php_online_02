@@ -75,7 +75,7 @@
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-thumb">
-									<a class="post-img" href="blog-post.html"><img src="<?php echo  $categorise_cate["0"]["thumbnail"] ;?>" alt="" height="380px"></a>
+									<a class="post-img" href="blog-post.php?id=<?=$categorise_cate['0']['id']?>"><img src="<?php echo  $categorise_cate["0"]["thumbnail"] ;?>" alt="" height="380px"></a>
 									<div class="post-body">
 										<div class="post-meta">
 										<?php 
@@ -87,10 +87,10 @@
 											if(strcasecmp( $categorise_cate['0']['des'], "NNT") == 0)
 												$kt = "post-category cat-3";
 										?>
-											<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $categorise_cate['0']['t'] ;?></a>
+											<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $id?>&cate=<?= $categorise_cate['0']['t']?>"><?php echo $categorise_cate['0']['t'] ;?></a>
 											<span class="post-date"><?php echo $categorise_cate['0']['created_at'] ;?></span>
 											</div>
-											<h3 class="post-title"><a href="blog-post.html"><?php echo $categorise_cate['0']['title'] ;?></a></h3>
+											<h3 class="post-title"><a href="blog-post.php?id=<?=$categorise_cate['0']['id']?>"><?php echo $categorise_cate['0']['title'] ;?></a></h3>
 									</div>
 								</div>
 							</div>
@@ -100,7 +100,7 @@
 							<?php for ($i=1; $i < 3; $i++)  { ?>
 							<div class="col-md-6">
 								<div class="post">
-									<a class="post-img" href="blog-post.html"><img src="<?php echo  $categorise_cate[$i]["thumbnail"] ;?>" alt="" height="243px"></a>
+									<a class="post-img" href="blog-post.php?id=<?=$categorise_cate[$i]['id']?>"><img src="<?php echo  $categorise_cate[$i]["thumbnail"] ;?>" alt="" height="243px"></a>
 									<div class="post-body">
 										<div class="post-meta">
 										<?php 
@@ -112,10 +112,10 @@
 											if(strcasecmp( $categorise_cate[$i]['des'], "NNT") == 0)
 												$kt = "post-category cat-3";
 										?>
-											<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $categorise_cate[$i]['t'] ;?></a>
+											<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $id?>&cate=<?= $categorise_cate['0']['t']?>"><?php echo $categorise_cate[$i]['t'] ;?></a>
 											<span class="post-date"><?php echo $categorise_cate[$i]['created_at'] ;?></span>
 											</div>
-											<h3 class="post-title"><a href="blog-post.html"><?php echo $categorise_cate[$i]['title'] ;?></a></h3>
+											<h3 class="post-title"><a href="blog-post.php?id=<?=$categorise_cate[$i]['id']?>"><?php echo $categorise_cate[$i]['title'] ;?></a></h3>
 									</div>
 								</div>
 							</div>
