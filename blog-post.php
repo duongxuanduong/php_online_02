@@ -1,3 +1,14 @@
+<?php
+	require_once('connection.php');
+	$idblog = $_GET['id'];
+
+	$query_post_title=  "SELECT p.*, c.id as idcate, c.tible as t  , c.descripition as des, a.name as n FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id LEFT JOIN authors AS a  ON p.author_id = a.id WHERE p.status= 1 AND p.id = ".$idblog;
+
+	$result_post = $conn->query($query_post_title);
+
+
+	$post_title = $result_post->fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -30,8 +41,23 @@
     </head>
 	<body>
 		
-	<?php require_once('MainNav.php')?>
-
+	<?php require_once('MainNav.php');?>
+		<!-- Page Header -->
+		<div id="post-header" class="page-header">
+				<div class="background-img" style="background-image: url('./img/post-page.jpg');"></div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10">
+							<div class="post-meta">
+								<a class="post-category cat-<?=$post_title['idcate']?>" href="category.php?id=<?= $post_title['idcate']?>&cate=<?= $post_title['t']?>"><?php echo $post_title['t']?></a>
+								<span class="post-date"><?php echo $post_title['created_at']?></span>
+							</div>
+							<h1><?php echo $post_title['title']?></h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Page Header -->
 		<!-- section -->
 		<div class="section">
 			<!-- container -->
@@ -42,22 +68,13 @@
 					<div class="col-md-8">
 						<div class="section-row sticky-container">
 							<div class="main-post">
-								<h3>Lorem Ipsum: when, and when not to use it</h3>
-								<p>Do you like Cheese Whiz? Spray tan? Fake eyelashes? That's what is Lorem Ipsum to many—it rubs them the wrong way, all the way. It's unreal, uncanny, makes you wonder if something is wrong, it seems to seek your attention for all the wrong reasons. Usually, we prefer the real thing, wine without sulfur based preservatives, real butter, not margarine, and so we'd like our layouts and designs to be filled with real words, with thoughts that count, information that has value. </p>
-								<p>The toppings you may chose for that TV dinner pizza slice when you forgot to shop for foods, the paint you may slap on your face to impress the new boss is your business. But what about your daily bread? Design comps, layouts, wireframes—will your clients accept that you go about things the facile way? Authorities in our business will tell in no uncertain terms that Lorem Ipsum is that huge, huge no no to forswear forever. Not so fast, I'd say, there are some redeeming factors in favor of greeking text, as its use is merely the symptom of a worse problem to take into consideration.</p>
+								<h3><?php echo $post_title['title']?></h3>
+								<p><i><?php echo $post_title['description'] ?></i></p>
 								<figure class="figure-img">
-									<img class="img-responsive" src="./img/post-4.jpg" alt="">
-									<figcaption>So Lorem Ipsum is bad (not necessarily)</figcaption>
+									<img class="img-responsive" src="<?php echo $post_title['thumbnail'] ?>" alt="" height="750px" width="450px">
 								</figure>
-								<p>You begin with a text, you sculpt information, you chisel away what's not needed, you come to the point, make things clear, add value, you're a content person, you like words. Design is no afterthought, far from it, but it comes in a deserved second. Anyway, you still use Lorem Ipsum and rightly so, as it will always have a place in the web workers toolbox, as things happen, not always the way you like it, not always in the preferred order. Even if your less into design and more into content strategy you may find some redeeming value with, wait for it, dummy copy, no less.</p>
-								<p>There's lot of hate out there for a text that amounts to little more than garbled words in an old language. The villagers are out there with a vengeance to get that Frankenstein, wielding torches and pitchforks, wanting to tar and feather it at the least, running it out of town in shame.</p>
-								<p>One of the villagers, Kristina Halvorson from Adaptive Path, holds steadfastly to the notion that design can’t be tested without real content:</p>
-								<blockquote class="blockquote">
-									I’ve heard the argument that “lorem ipsum” is effective in wireframing or design because it helps people focus on the actual layout, or color scheme, or whatever. What kills me here is that we’re talking about creating a user experience that will (whether we like it or not) be DRIVEN by words. The entire structure of the page or app flow is FOR THE WORDS.
-								</blockquote>
-								<p>If that's what you think how bout the other way around? How can you evaluate content without design? No typography, no colors, no layout, no styles, all those things that convey the important signals that go beyond the mere textual, hierarchies of information, weight, emphasis, oblique stresses, priorities, all those subtle cues that also have visual and emotional appeal to the reader. Rigid proponents of content strategy may shun the use of dummy copy but then designers might want to ask them to provide style sheets with the copy decks they supply that are in tune with the design direction they require.</p>
-								<h3>Summing up, if the copy is diverting attention from the design it’s because it’s not up to task.</h3>
-								<p>Typographers of yore didn't come up with the concept of dummy copy because people thought that content is inconsequential window dressing, only there to be used by designers who can’t be bothered to read. Lorem Ipsum is needed because words matter, a lot. Just fill up a page with draft copy about the client’s business and they will actually read it and comment on it. They will be drawn to it, fiercely. Do it the wrong way and draft copy can derail your design review.</p>
+								<p><?php echo $post_title['contents'] ?></p>
+								<p><strong>Đăng bởi: <?php echo $post_title['n'] ?></strong></p>
 							</div>
 							<div class="post-shares sticky-shares">
 								<a href="#" class="share-facebook"><i class="fa fa-facebook"></i></a>

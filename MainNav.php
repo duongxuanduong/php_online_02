@@ -63,7 +63,7 @@
 						<?php 
 						$i = 1 ;
 						foreach ($categorie_post as $cate) {?>
-							<li class="cat-<?php echo $i?>"><a href="category.php?id=<?= $cate['id']?>"><?= $cate['tible']?></a></li>
+							<li class="cat-<?php echo $i?>"><a href="category.php?id=<?= $cate['id']?>&cate=<?= $cate['tible']?>"><?= $cate['tible']?></a></li>
 							<?php 
 							$i++; 
 							if ($i==3){

@@ -11,6 +11,7 @@
     while($row = $result_recent_category->fetch_assoc()){
         $categorise_cate[] = $row;
 	}
+	$cates = $_GET['cate'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,22 +53,12 @@
 							<ul class="page-header-breadcrumb">
 								<li><a href="index.php">Home</a></li>
 								<li><?php
-									if($id == 1)
-										echo 'Nóng trong ngày';
-									if($id == 2)
-										echo 'ShowBiz';
-									if($id == 3)
-										echo 'Người Nổi Tiếng';
+									echo $cates;
 								?></li>
 							</ul>
 							<h1>
 								<?php
-									if($id == 1)
-										echo 'Nóng trong ngày';
-									if($id == 2)
-										echo 'ShowBiz';
-									if($id == 3)
-										echo 'Người Nổi Tiếng';
+									echo $cates;
 								?>
 							</h1>
 						</div>

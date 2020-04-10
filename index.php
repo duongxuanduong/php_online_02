@@ -3,7 +3,7 @@
 require_once('connection.php');
     
 //Post 2 bài viết  mới nhất vừa cập nhật
-	$query_tow_post=  "SELECT p.*, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE status= 1 ORDER BY created_at DESC limit 2 ";
+	$query_tow_post=  "SELECT p.*, c.id as idcate, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE status= 1 ORDER BY created_at DESC limit 2 ";
 
 	$result_tow_post = $conn->query($query_tow_post);
 
@@ -13,7 +13,7 @@ require_once('connection.php');
 		$posts_tow_post[] = $row;
 	}
 //Post 6 bài viết mới nhất
-	$query_recent_post=  "SELECT p.*, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE status= 1 ORDER BY created_at DESC limit 2,6";
+	$query_recent_post=  "SELECT p.*,c.id as idcate, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE status= 1 ORDER BY created_at DESC limit 2,6";
 
     $result_recent_post = $conn->query($query_recent_post);
 
@@ -34,7 +34,7 @@ require_once('connection.php');
 	}*/
 
 //Post 7 bài viết tiếp theo
-	$query_post=  "SELECT p.*, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE status= 1 ORDER BY created_at DESC limit 8,7 ";
+	$query_post=  "SELECT p.*,c.id as idcate, c.tible as t  , c.descripition as des FROM posts as p LEFT JOIN categories as c ON p.categories_id = c.id WHERE status= 1 ORDER BY created_at DESC limit 8,7 ";
 
     $result_post = $conn->query($query_post);
 
@@ -87,7 +87,7 @@ require_once('connection.php');
 				<div class="row">	
 					<div class="col-md-6">
 						<div class="post post-thumb">
-							<a class="post-img" href="blog-post.html"><img src=<?php echo $post['thumbnail'] ;?> alt="" height="345px"></a>
+							<a class="post-img" href="blog-post.php?id=<?=$post['id']?>"><img src=<?php echo $post['thumbnail'] ;?> alt="" height="345px"></a>
 							<div class="post-body">
 								<div class="post-meta">
 								<?php 
@@ -99,10 +99,10 @@ require_once('connection.php');
 									if(strcasecmp($post['des'], "NNT") == 0)
 										$kt = "post-category cat-3";
 								?>
-								<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $post['t'] ;?></a>
+								<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $post['idcate']?>&cate=<?= $post['t']?>"><?php echo $post['t'] ;?></a>
 								<span class="post-date"><?php echo $post['created_at'] ;?></span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html"><?php echo $post['title'] ;?></a></h3>
+								<h3 class="post-title"><a href="blog-post.php?id=<?=$post['id']?>"><?php echo $post['title'] ;?></a></h3>
 							</div>
 						</div>
 					</div>
@@ -124,9 +124,9 @@ require_once('connection.php');
 					<!-- post  6 bài đầu -->
 					<div class="col-md-4">
 						<div class="post">
-							<a class="post-img" href="blog-post.html"><img src="<?php echo $post['thumbnail'] ;?>" alt="" height="207" ></a>
+							<a class="post-img" href="blog-post.php?id=<?=$post['id']?>"><img src="<?php echo $post['thumbnail'] ;?>" alt="" height="207" ></a>
 							<div class="post-body">
-								<div class="post-meta">
+							<div class="post-meta">
 								<?php 
 									$kt = NULL;
 									if(strcasecmp($post['des'], "NTN") == 0)
@@ -136,10 +136,10 @@ require_once('connection.php');
 									if(strcasecmp($post['des'], "NNT") == 0)
 										$kt = "post-category cat-3";
 								?>
-								<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $post['t'] ;?></a>
+								<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $post['idcate']?>&cate=<?= $post['t']?>"><?php echo $post['t'] ;?></a>
 								<span class="post-date"><?php echo $post['created_at'] ;?></span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html"><?php echo $post['title'] ?></a></h3>
+								<h3 class="post-title"><a href="blog-post.php?id=<?=$post['id']?>"><?php echo $post['title'] ;?></a></h3>
 							</div>
 						</div>
 					</div>
@@ -155,47 +155,45 @@ require_once('connection.php');
 							<!-- post 1 bài tiếp theo -->
 							<div class="col-md-12">
 							<div class="post">
-									<a class="post-img" href="blog-post.html"><img src="<?php echo  $posts_post["0"]["thumbnail"] ;?>" alt="" ></a>
+									<a class="post-img" href="blog-post.php?id=<?=$posts_post["0"]['id']?>"><img src="<?php echo  $posts_post["0"]["thumbnail"] ;?>" alt="" height="600px"></a>
 									<div class="post-body">
 									<div class="post-meta">
-								<?php 
-									$kt = NULL;
-									if(strcasecmp($posts_post['0']['des'], "NTN") == 0)
-										$kt = "post-category cat-1";
-									if(strcasecmp( $posts_post['0']['des'], "SB") == 0)
-										$kt = "post-category cat-2";
-									if(strcasecmp( $posts_post['0']['des'], "NNT") == 0)
-										$kt = "post-category cat-3";
-								?>
-								<a class= "<?php echo $kt ;?>" href="category.php"><?php echo  $posts_post['0']['t'] ;?></a>
-								<span class="post-date"><?php echo $posts_post['0']['created_at'] ;?></span>
+									<?php 
+										$kt = NULL;
+										if(strcasecmp($posts_post["0"]['des'], "NTN") == 0)
+											$kt = 'post-category cat-1';
+										if(strcasecmp($posts_post["0"]['des'], "SB") == 0)
+											$kt = "post-category cat-2";
+										if(strcasecmp($posts_post["0"]['des'], "NNT") == 0)
+											$kt = "post-category cat-3";
+									?>
+								<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $posts_post["0"]['idcate']?>&cate=<?= $posts_post["0"]['t']?>"><?php echo $posts_post["0"]['t'] ;?></a>
+								<span class="post-date"><?php echo $posts_post[$i]['created_at'] ;?></span>
 								</div>
-								<h3 class="post-title"><a href="blog-post.html"><?php echo $posts_post['0']['title'] ?></a></h3>
+								<h3 class="post-title"><a href="blog-post.php?id=<?=$posts_post["0"]['id']?>"><?php echo $posts_post["0"]['title'] ;?></a></h3>
 									</div>
 								</div>
 							</div>
 							<!-- post  6 bài liên tục-->
-							<?php for ($i=1; $i < 7; $i++) { 
-								# code...
-							?>
+							<?php for ($i=1; $i < 7; $i++) { ?>
 							<div class="col-md-6">
 								<div class="post">
-									<a class="post-img" href="blog-post.html"><img src="<?php echo $posts_post[$i]['thumbnail'] ;?>" alt="" height="225px"></a>
+									<a class="post-img" href="bblog-post.php?id=<?=$posts_post[$i]['id']?>"><img src="<?php echo $posts_post[$i]['thumbnail'] ;?>" alt="" height="225px"></a>
 									<div class="post-body">
 									<div class="post-meta">
-								<?php 
-									$kt = NULL;
-									if(strcasecmp($posts_post[$i]['des'], "NTN") == 0)
-										$kt = 'post-category cat-1';
-									if(strcasecmp($posts_post[$i]['des'], "SB") == 0)
-										$kt = "post-category cat-2";
-									if(strcasecmp($posts_post[$i]['des'], "NNT") == 0)
-										$kt = "post-category cat-3";
-								?>
-								<a class= "<?php echo $kt ;?>" href="category.html"><?php echo $posts_post[$i]['t'] ;?></a>
-								<span class="post-date"><?php echo $posts_post[$i]['created_at'] ;?></span>
-								</div>
-								<h3 class="post-title"><a href="blog-post.html"><?php echo $posts_post[$i]['title'] ?></a></h3>
+										<?php 
+											$kt = NULL;
+											if(strcasecmp($posts_post[$i]['des'], "NTN") == 0)
+												$kt = 'post-category cat-1';
+											if(strcasecmp($posts_post[$i]['des'], "SB") == 0)
+												$kt = "post-category cat-2";
+											if(strcasecmp($posts_post[$i]['des'], "NNT") == 0)
+												$kt = "post-category cat-3";
+										?>
+										<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $posts_post[$i]['idcate']?>&cate=<?= $posts_post[$i]['t']?>"><?php echo $posts_post[$i]['t'] ;?></a>
+										<span class="post-date"><?php echo $posts_post[$i]['created_at'] ;?></span>
+										</div>
+										<h3 class="post-title"><a href="blog-post.php?id=<?=$posts_post[$i]['id']?>"><?php echo $posts_post[$i]['title'] ;?></a></h3>
 									</div>
 								</div>
 							</div>
