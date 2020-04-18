@@ -87,7 +87,7 @@ require_once('connection.php');
 				<div class="row">	
 					<div class="col-md-6">
 						<div class="post post-thumb">
-							<a class="post-img" href="blog-post.php?id=<?=$post['id']?>"><img src=<?php echo $post['thumbnail'] ;?> alt="" height="345px"></a>
+							<a class="post-img" href="blog-post.php?id=<?=$post['id']?>"><img src="./img/<?=$post['thumbnail'] ;?>" alt="" height="345px"></a>
 							<div class="post-body">
 								<div class="post-meta">
 								<?php 
@@ -124,7 +124,7 @@ require_once('connection.php');
 					<!-- post  6 bài đầu -->
 					<div class="col-md-4">
 						<div class="post">
-							<a class="post-img" href="blog-post.php?id=<?=$post['id']?>"><img src="<?php echo $post['thumbnail'] ;?>" alt="" height="207" ></a>
+							<a class="post-img" href="blog-post.php?id=<?=$post['id']?>"><img src="./img/<?= $post['thumbnail'] ;?>" alt="" height="207" ></a>
 							<div class="post-body">
 							<div class="post-meta">
 								<?php 
@@ -155,7 +155,7 @@ require_once('connection.php');
 							<!-- post 1 bài tiếp theo -->
 							<div class="col-md-12">
 							<div class="post">
-									<a class="post-img" href="blog-post.php?id=<?=$posts_post["0"]['id']?>"><img src="<?php echo  $posts_post["0"]["thumbnail"] ;?>" alt="" height="600px"></a>
+									<a class="post-img" href="blog-post.php?id=<?=$posts_post["0"]['id']?>"><img src="./img/<?= $posts_post["0"]["thumbnail"] ;?>" alt="" height="600px"></a>
 									<div class="post-body">
 									<div class="post-meta">
 									<?php 
@@ -178,7 +178,7 @@ require_once('connection.php');
 							<?php for ($i=1; $i < 7; $i++) { ?>
 							<div class="col-md-6">
 								<div class="post">
-									<a class="post-img" href="bblog-post.php?id=<?=$posts_post[$i]['id']?>"><img src="<?php echo $posts_post[$i]['thumbnail'] ;?>" alt="" height="225px"></a>
+									<a class="post-img" href="bblog-post.php?id=<?=$posts_post[$i]['id']?>"><img src="./img/<?=$posts_post[$i]['thumbnail'] ;?>" alt="" height="225px"></a>
 									<div class="post-body">
 									<div class="post-meta">
 										<?php 

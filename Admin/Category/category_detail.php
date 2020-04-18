@@ -29,6 +29,7 @@
     <div class="container">
     <h3 align="center">Zent - Education And Technology Group</h3>
     <h3 align="center">Category List</h3>
+    <a href="categories.php" type="button" class="btn btn-primary">Về trang chủ Category - Admin</a>
     <h2>Title: <?=$categorie_ad_cateid['tible']?></h2>
     <h2>Description: <?=$categorie_ad_cateid['descripition'] ?></h2>
 </body>

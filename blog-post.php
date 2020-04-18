@@ -81,7 +81,7 @@
 								<h3><?php echo $post_title['title']?></h3>
 								<p><i><?php echo $post_title['description'] ?></i></p>
 								<figure class="figure-img">
-									<img class="img-responsive" src="<?php echo $post_title['thumbnail'] ?>" alt="" height="750px" width="450px">
+									<img class="img-responsive" src="./img/<?= $post_title['thumbnail'] ?>" alt="" height="750px" width="450px">
 								</figure>
 								<p><?php echo $post_title['contents'] ?></p>
 								<p><strong>Đăng bởi: <?php echo $post_title['n'] ?></strong></p>
@@ -242,7 +242,7 @@
 							</div>
 						<?php foreach ($post_MostR as $most)  {?>
 							<div class="post post-widget">
-								<a class="post-img" href="blog-post.php?id=<?=$most['id']?>"><img src=<?php echo $most['thumbnail'] ;?> alt="" width="90px" height="90px"></a>
+								<a class="post-img" href="blog-post.php?id=<?=$most['id']?>"><img src=./img/<?=$most['thumbnail'] ;?> alt="" width="90px" height="90px"></a>
 								<div class="post-body">
 									<h3 class="post-title"><a href="blog-post.php?id=<?=$most['id']?>"><?php echo $most['title']?></a></h3>
 								</div>

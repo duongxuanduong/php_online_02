@@ -29,6 +29,7 @@
     <div class="container">
     <h3 align="center">Zent - Education And Technology Group</h3>
     <h3 align="center">Category List</h3>
+    <a href="authors.php" type="button" class="btn btn-primary">Về trang chủ Authors - Admin</a>
     <h2>ID: <?=$authors_ad_1['id']?></h2>
     <h2>Name: <?=$authors_ad_1['name'] ?></h2>
     <h2>Email: <?=$authors_ad_1['email']?></h2>

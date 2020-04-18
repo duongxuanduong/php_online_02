@@ -75,7 +75,7 @@
 							<!-- post -->
 							<div class="col-md-12">
 								<div class="post post-thumb">
-									<a class="post-img" href="blog-post.php?id=<?=$categorise_cate['0']['id']?>"><img src="<?php echo  $categorise_cate["0"]["thumbnail"] ;?>" alt="" height="380px"></a>
+									<a class="post-img" href="blog-post.php?id=<?=$categorise_cate['0']['id']?>"><img src="./img/<?= $categorise_cate["0"]["thumbnail"] ;?>" alt="" height="380px"></a>
 									<div class="post-body">
 										<div class="post-meta">
 										<?php 
@@ -100,7 +100,7 @@
 							<?php for ($i=1; $i < 3; $i++)  { ?>
 							<div class="col-md-6">
 								<div class="post">
-									<a class="post-img" href="blog-post.php?id=<?=$categorise_cate[$i]['id']?>"><img src="<?php echo  $categorise_cate[$i]["thumbnail"] ;?>" alt="" height="243px"></a>
+									<a class="post-img" href="blog-post.php?id=<?=$categorise_cate[$i]['id']?>"><img src="./img/<?=$categorise_cate[$i]["thumbnail"] ;?>" alt="" height="243px"></a>
 									<div class="post-body">
 										<div class="post-meta">
 										<?php 
