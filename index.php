@@ -54,7 +54,7 @@ require_once('connection.php');
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-		<title>Bài Tập PHP Online Buổi 2</title>
+		<title>Bài Tập PHP Online </title>
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 

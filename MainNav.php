@@ -66,7 +66,7 @@
 							<li class="cat-<?php echo $i?>"><a href="category.php?id=<?= $cate['id']?>&cate=<?= $cate['tible']?>"><?= $cate['tible']?></a></li>
 							<?php 
 							$i++; 
-							if ($i==3){
+							if ($i==6){
 								 $i==1;
 								}
 							}?>
