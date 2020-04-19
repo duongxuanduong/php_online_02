@@ -57,16 +57,7 @@ require_once('connection.php');
 		<title>Bài Tập PHP Online </title>
 
 		<!-- Google font -->
-		<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet"> 
-
-		<!-- Bootstrap -->
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
-
-		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-
-		<!-- Custom stlylesheet -->
-		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -91,13 +82,30 @@ require_once('connection.php');
 							<div class="post-body">
 								<div class="post-meta">
 								<?php 
+
 									$kt = NULL;
-									if(strcasecmp($post['des'], "NTN") == 0)
-										$kt = 'post-category cat-1';
-									if(strcasecmp($post['des'], "SB") == 0)
-										$kt = "post-category cat-2";
-									if(strcasecmp($post['des'], "NNT") == 0)
-										$kt = "post-category cat-3";
+									$i = 1;
+									foreach ($categorie_post as $cate) {
+										if(strcasecmp($post['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										if(strcasecmp($post['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										if(strcasecmp($post['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										if(strcasecmp($post['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										$i++;
+										if($i==4)
+											$i=1;
+									}	
 								?>
 								<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $post['idcate']?>&cate=<?= $post['t']?>"><?php echo $post['t'] ;?></a>
 								<span class="post-date"><?php echo $post['created_at'] ;?></span>
@@ -128,13 +136,29 @@ require_once('connection.php');
 							<div class="post-body">
 							<div class="post-meta">
 								<?php 
-									$kt = NULL;
-									if(strcasecmp($post['des'], "NTN") == 0)
-										$kt = 'post-category cat-1';
-									if(strcasecmp($post['des'], "SB") == 0)
-										$kt = "post-category cat-2";
-									if(strcasecmp($post['des'], "NNT") == 0)
-										$kt = "post-category cat-3";
+								$kt = NULL;
+								$i = 1;
+								foreach ($categorie_post as $cate) {
+									if(strcasecmp($post['des'], $cate['descripition']) == 0)
+									{
+										$kt = 'post-category cat-'.$i;
+									}
+									if(strcasecmp($post['des'], $cate['descripition']) == 0)
+									{
+										$kt = 'post-category cat-'.$i;
+									}
+									if(strcasecmp($post['des'], $cate['descripition']) == 0)
+									{
+										$kt = 'post-category cat-'.$i;
+									}
+									if(strcasecmp($post['des'], $cate['descripition']) == 0)
+									{
+										$kt = 'post-category cat-'.$i;
+									}
+									$i++;
+									if($i==4)
+										$i=1;
+								}	
 								?>
 								<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $post['idcate']?>&cate=<?= $post['t']?>"><?php echo $post['t'] ;?></a>
 								<span class="post-date"><?php echo $post['created_at'] ;?></span>
@@ -159,13 +183,29 @@ require_once('connection.php');
 									<div class="post-body">
 									<div class="post-meta">
 									<?php 
-										$kt = NULL;
-										if(strcasecmp($posts_post["0"]['des'], "NTN") == 0)
-											$kt = 'post-category cat-1';
-										if(strcasecmp($posts_post["0"]['des'], "SB") == 0)
-											$kt = "post-category cat-2";
-										if(strcasecmp($posts_post["0"]['des'], "NNT") == 0)
-											$kt = "post-category cat-3";
+									$kt = NULL;
+									$i = 1;
+									foreach ($categorie_post as $cate) {
+										if(strcasecmp($posts_post["0"]['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										if(strcasecmp($posts_post["0"]['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										if(strcasecmp($posts_post["0"]['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										if(strcasecmp($posts_post["0"]['des'], $cate['descripition']) == 0)
+										{
+											$kt = 'post-category cat-'.$i;
+										}
+										$i++;
+										if($i==4)
+											$i=1;
+									}	
 									?>
 								<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $posts_post["0"]['idcate']?>&cate=<?= $posts_post["0"]['t']?>"><?php echo $posts_post["0"]['t'] ;?></a>
 								<span class="post-date"><?php echo $posts_post[$i]['created_at'] ;?></span>
@@ -182,13 +222,29 @@ require_once('connection.php');
 									<div class="post-body">
 									<div class="post-meta">
 										<?php 
-											$kt = NULL;
-											if(strcasecmp($posts_post[$i]['des'], "NTN") == 0)
-												$kt = 'post-category cat-1';
-											if(strcasecmp($posts_post[$i]['des'], "SB") == 0)
-												$kt = "post-category cat-2";
-											if(strcasecmp($posts_post[$i]['des'], "NNT") == 0)
-												$kt = "post-category cat-3";
+										$kt = NULL;
+										$a = 1;
+										foreach ($categorie_post as $cate) {
+											if(strcasecmp($posts_post[$i]['des'], $cate['descripition']) == 0)
+											{
+												$kt = 'post-category cat-'.$a;
+											}
+											if(strcasecmp($posts_post[$i]['des'], $cate['descripition']) == 0)
+											{
+												$kt = 'post-category cat-'.$a;
+											}
+											if(strcasecmp($posts_post[$i]['des'], $cate['descripition']) == 0)
+											{
+												$kt = 'post-category cat-'.$a;
+											}
+											if(strcasecmp($posts_post[$i]['des'], $cate['descripition']) == 0)
+											{
+												$kt = 'post-category cat-'.$a;
+											}
+											$a++;
+											if($a==4)
+												$a=1;
+										}	
 										?>
 										<a class= "<?php echo $kt ;?>" href="category.php?id=<?= $posts_post[$i]['idcate']?>&cate=<?= $posts_post[$i]['t']?>"><?php echo $posts_post[$i]['t'] ;?></a>
 										<span class="post-date"><?php echo $posts_post[$i]['created_at'] ;?></span>

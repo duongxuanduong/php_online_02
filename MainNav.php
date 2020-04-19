@@ -54,7 +54,7 @@
 					<div class="container">
 						<!-- logo -->
 						<div class="nav-logo">
-							<a href="index.php" class="logo"><img src="./img/logo.png" alt=""></a>
+							<a href="index.php" class="logo"><img src="./img/logo-lb.png" alt=""></a>
 						</div>
 						<!-- /logo -->
 
@@ -63,11 +63,11 @@
 						<?php 
 						$i = 1 ;
 						foreach ($categorie_post as $cate) {?>
-							<li class="cat-<?php echo $i?>"><a href="category.php?id=<?= $cate['id']?>&cate=<?= $cate['tible']?>"><?= $cate['tible']?></a></li>
+							<li class="cat-<?= $i?>"><a href="category.php?id=<?= $cate['id']?>&cate=<?= $cate['tible']?>"><?= $cate['tible']?></a></li>
 							<?php 
 							$i++; 
-							if ($i==6){
-								 $i==1;
+							if ($i==5){
+								 $i=1;
 								}
 							}?>
 						</ul>
