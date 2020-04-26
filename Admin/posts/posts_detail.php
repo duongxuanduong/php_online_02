@@ -1,5 +1,8 @@
-
 <?php
+    session_start();
+    if(!isset($_SESSION['isLogin']) && $_SESSION['isLogin']!= true){
+        header('Location: ../Login/login.php');
+    }
 	//Liên kết tới file Connection
     require_once('../../connection.php');
     //lấy  danh mục theo id

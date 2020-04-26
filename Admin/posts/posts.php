@@ -1,4 +1,8 @@
 <?php
+  session_start();
+  if(!isset($_SESSION['isLogin']) && $_SESSION['isLogin']!= true){
+      header('Location: ../Login/login.php');
+  }
 	//Liên kết tới file Connection
 	require_once('../../connection.php');
 	//lấy danh mục
@@ -26,17 +30,13 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script language="javascript" text="text/javascript">
-        <form id="vidu2">
-            <input type="button" id="Doimatkhau" value="Đổi mật khẩu" onclick="traloi=confirm('Bạn có muốn đổi mật khẩu ');"/>
-        </form>
-    </script>
 </head>
 <body>
     <div class="container">
     <h3 align="center">Zent - Education And Technology Group</h3>
     <h3 align="center">Category List</h3>
     <a href="posts_add.php" type="button" class="btn btn-primary">Thêm mới</a>
+    <a href="../Login/index.php" type="button" class="btn btn-primary">Về trang Admin</a>
     <?php if(isset($_COOKIE['msg'])) { ?>
             <div class="alert alert-success">
                 <strong>Thông báo</strong> <?=$_COOKIE['msg'] ?>
@@ -50,8 +50,6 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Thumbnail</th>
-       
-
         </tr>
       </thead>
       <tbody>
@@ -61,12 +59,10 @@
           <td><?=  $status['title']?></td>
           <td><?= $status['description']?></td>
           <td><img src="../../img/<?=$status['thumbnail']?>" height="100px"></td>
-        
-
           <td>
             <a href="posts_detail.php?id=<?=$status['id']?>" type="button" class="btn btn-default">Xem</a>
             <a href="posts_edit.php?id=<?=$status['id']?>" type="button" class="btn btn-success">Sửa</a>
-            <a href="posts_delete.php?id=<?=$status['id']?>" type="button" class="btn btn-warning">Xóa</a>
+            <a href="posts_delete.php?id=<?=$status['id']?>" onclick="return confirm('Bạn có thật sự muốn xóa ?');" type="button" class="btn btn-warning">Xóa</a>
           </td>
         </tr>
         <?php } ?>

@@ -1,6 +1,11 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['isLogin']) && $_SESSION['isLogin']!= true){
+        header('Location: ../Login/login.php');
+    }
     require_once('../../connection.php');
 
+    
     $target_dir = "../../img/";  // thư mục chứa file upload
 	$thumbnail="";
 
@@ -26,14 +31,16 @@
 
     $created_at =  date('Y-m-d H:i:s'); 
 
-    $query = "INSERT INTO posts(title,description,contents,thumbnail,author_id, categories_id, status, created_at) VALUES ('".$title."','".$description."','".$contents."','".$thumbnail."','".$author_id."','".$categories_id."','".$status."','".$created_at."');";
+    $query = "INSERT INTO posts(title,description,contents,thumbnail,author_id, categories_id, status, created_at,count_view) VALUES ('".$title."','".$description."','".$contents."','".$thumbnail."',".$author_id.",".$categories_id.",".$status.",'".$created_at."',0);";
+
     $status = $conn->query($query);
-    
-    if ($status== true) {
-        setcookie('msg','Thêm mới thành công',time()+5);
-        header('Location: posts.php');
-    }else {
-        setcookie('msg','Thêm vào không thành công',time()+5);
-        header('Location: posts_add.php');
-    }
+    var_dump($query);
+    die;
+    // if ($status== true) {
+    //     setcookie('msg','Thêm mới thành công',time()+5);
+    //     header('Location: posts.php');
+    // }else {
+    //     setcookie('msg','Thêm vào không thành công',time()+5);
+    //     header('Location: posts_add.php');
+    // }
 ?>

@@ -1,4 +1,8 @@
 <?php
+  session_start();
+  if(!isset($_SESSION['isLogin']) && $_SESSION['isLogin']!= true){
+      header('Location: ../Login/login.php');
+  }
 	//Liên kết tới file Connection
 	require_once('../../connection.php');
     //lấy danh sách tác giả
@@ -38,6 +42,7 @@
     <h3 align="center">Zent - Education And Technology Group</h3>
     <h3 align="center">Authors List</h3>
     <a href="authors_add.php" type="button" class="btn btn-primary">Thêm mới</a>
+    <a href="../Login/index.php" type="button" class="btn btn-primary">Về trang Admin</a>
     <?php if(isset($_COOKIE['msg'])) { ?>
             <div class="alert alert-success">
                 <strong>Thông báo</strong> <?=$_COOKIE['msg'] ?>
@@ -65,7 +70,7 @@
           <td>
             <a href="authors_detail.php?id=<?=$status['id']?>" type="button" class="btn btn-default">Xem</a>
             <a href="authors_edit.php?id=<?=$status['id']?>" type="button" class="btn btn-success">Sửa</a>
-            <a href="authors_delete.php?id=<?=$status['id']?>" type="button" class="btn btn-warning">Xóa</a>
+            <a href="authors_delete.php?id=<?=$status['id']?>"  onclick="return confirm('Bạn có thật sự muốn xóa ?');" type="button" class="btn btn-warning">Xóa</a>
           </td>
         </tr>
         <?php } ?>
